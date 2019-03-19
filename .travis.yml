@@ -1,0 +1,29 @@
+services:
+  - docker
+
+git:
+  depth: 1
+
+branches:
+  only:
+  - master
+
+language: generic
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t $DOCKER_USERNAME/sourcekit-lsp .
+
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script: docker push "$IMAGE"
+  on:
+    branch: master
+  skip_cleanup: true
+
+notifications:
+  on_success: change
+  on_failure: always
+  on_start: never
