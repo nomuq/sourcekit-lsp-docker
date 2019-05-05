@@ -19,7 +19,7 @@ RUN swift --version
 
 # Set absolute path to the swift toolchain
 ENV SOURCEKIT_TOOLCHAIN_PATH=/usr/lib/swift
-ENV SOURCEKIT_LOGGING=3
+# ENV SOURCEKIT_LOGGING=3
 
 ENV DEBIAN_FRONTEND noninteractive
 
