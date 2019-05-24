@@ -9,8 +9,8 @@ RUN apt-get -q update && \
 # Download and Build Sourcekit-LSP
 RUN git clone --depth 1 https://github.com/apple/sourcekit-lsp
 WORKDIR /sourcekit-lsp
-# RUN swift build -Xcxx -I/usr/lib/swift && mv `swift build --show-bin-path`/sourcekit-lsp /usr/bin/
-RUN swift build -Xcxx -I/usr/lib/swift -I/usr/lib/swift/Block && mv `swift build --show-bin-path`/sourcekit-lsp /usr/bin/
+RUN swift build -Xcxx -I/usr/lib/swift && mv `swift build --show-bin-path`/sourcekit-lsp /usr/bin/
+# RUN swift build -Xcxx -I/usr/lib/swift -I/usr/lib/swift/Block && mv `swift build --show-bin-path`/sourcekit-lsp /usr/bin/
 RUN chmod -R o+r /usr/bin/sourcekit-lsp
 
 FROM satishbabariya/swift
