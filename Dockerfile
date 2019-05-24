@@ -1,4 +1,4 @@
-FROM satishbabariya/swift as lsp-builder
+FROM satishbabariya/swift:5.0.1 as lsp-builder
 
 RUN apt-get -q update && \
     apt-get -q install -y \
@@ -13,7 +13,7 @@ RUN swift build -Xcxx -I/usr/lib/swift && mv `swift build --show-bin-path`/sourc
 # RUN swift build -Xcxx -I/usr/lib/swift -I/usr/lib/swift/Block && mv `swift build --show-bin-path`/sourcekit-lsp /usr/bin/
 RUN chmod -R o+r /usr/bin/sourcekit-lsp
 
-FROM satishbabariya/swift
+FROM satishbabariya/swift:5.0.1
 
 # Set absolute path to the swift toolchain
 ENV SOURCEKIT_TOOLCHAIN_PATH=/usr/lib/swift
